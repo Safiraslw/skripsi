@@ -1,0 +1,19 @@
+<?php
+session_start();
+
+require "koneksi.php";
+
+if (isset($_POST['register'])) {
+    $name = $_POST['name'];
+    $username = $_POST['username'];
+    $pass = md5($_POST['password']);
+
+    $sql   = "INSERT INTO `tabel_akun`(`name`, `username`, `password`) VALUES ('$name','$username','$pass')";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+        header("Location: ../index.php");
+        echo "<script>alert('New User Register Success');</script>";
+    } else {
+        die(mysqli_error($conn));
+    }
+}

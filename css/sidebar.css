@@ -1,0 +1,156 @@
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.navigation 
+{
+    position: relative;
+    min-height: 100vh;
+    align-items: center;
+    width: 250px;
+    height: 500px;
+    background: #232c33;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.navigation h1 img 
+{
+    width: 70px;
+    margin: 15px;
+    margin-left: 100px;
+    margin-top: 10px;
+    border-radius: 50%;
+    border: 3px solid #daf4fa;
+}
+
+.navigation h1 span 
+{
+    position: relative;
+    display: block;
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+    color: #ffff;
+}
+
+.navigation ul 
+{
+    padding: 5px 0 5px 20px;
+}
+
+.navigation ul li
+{
+    list-style: none;
+    margin: 20px auto;
+    position: relative;
+    overflow: hidden;
+    max-height: 35px;
+    line-height: 35px;
+    transition: 0.5s;
+    text-transform: capitalize;
+}
+
+.navigation ul:first-child li
+{
+    max-height: 50px;
+}
+
+.navigation ul li:hover
+{
+    background: #d1d1d173;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+.navigation ul:first-child li:hover
+{
+    background: none;
+}
+
+.navigation ul li a
+{
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+.navigation ul li a i
+{
+    width: 30px;
+    padding: 5px;
+    margin-right: 10px;
+} 
+
+.navigation ul li a i .icon ion-icon
+{
+    position: relative;
+    min-width: 80px;
+    height: 60px;
+    font-size: 2em;
+    z-index: 1;
+}
+
+.navigation ul li a i.fa-angle-right
+{
+    position: absolute;
+    right: 0;
+    top: 5px;
+    transition: 0.5s;
+}
+
+.navigation ul li>ul
+{
+    padding: 1px;
+    margin: 0 0 0 20px;
+}
+
+.navigation ul li>ul li a.dropdown
+{
+    height: 25px;
+    line-height: 20px;
+    font-size: 12px;
+    padding: 1px 1px 1px 20px;
+    font-weight: normal;
+    margin: 5px;
+    color: #fff0f0;
+    cursor: pointer;
+}
+
+.navigation ul li>ul li a,
+.navigation ul li:target>ul li a
+{
+    background: transparent;
+}
+
+.navigation ul li>ul li a,
+.navigation ul li:target
+{
+    max-height: 300px;
+    border-radius: 5px 0px 0px 5px;
+}
+
+.navigation ul li:target a
+{
+    color: #444;
+    display: inherit;
+    background: white;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+.navigation ul li:target a i.fa-angle-right
+{
+    transform: rotate(90deg);
+    top: 10px;
+}
+
+.navigation ul li:target:hover
+{
+    background: initial;
+} 
