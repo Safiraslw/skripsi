@@ -29,9 +29,6 @@ $jumlah_datauji = mysqli_num_rows($query1);
             <!-- END SIDEBAR -->
         </div>
         <div class="col-9">
-            <?php
-            require "user.php";
-            ?>
 
             <!-- START CONTENT -->
             <div class="col-lg-12">
