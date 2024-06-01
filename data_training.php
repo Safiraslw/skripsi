@@ -91,7 +91,7 @@ $sql = mysqli_query($conn, "SELECT * FROM data_training");
                                         <th>Periode</th>
                                         <th>Permintaan</th>
                                         <th>Persediaan</th>
-                                        <th>Prediksi</th>
+                                        <th>Produksi</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>

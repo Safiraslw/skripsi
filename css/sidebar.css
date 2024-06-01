@@ -13,7 +13,7 @@
     position: relative;
     min-height: 100vh;
     align-items: center;
-    width: 250px;
+    width: 300px;
     height: 500px;
     background: #232c33;
     border-radius: 3px;
@@ -133,21 +133,6 @@
 {
     max-height: 300px;
     border-radius: 5px 0px 0px 5px;
-}
-
-.navigation ul li:target a
-{
-    color: #444;
-    display: inherit;
-    background: white;
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
-}
-
-.navigation ul li:target a i.fa-angle-right
-{
-    transform: rotate(90deg);
-    top: 10px;
 }
 
 .navigation ul li:target:hover

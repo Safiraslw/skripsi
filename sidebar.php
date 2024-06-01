@@ -36,7 +36,7 @@
             </ul>
         </li>
         <li id="rawat">
-            <a href="#" class="nav-link">
+            <a href="grafik.php" class="nav-link">
                 <i class="icon"><ion-icon name="documents-outline"></ion-icon></i>
                 <span>Grafik</span>
             </a>

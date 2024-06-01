@@ -34,7 +34,7 @@ $jumlah_datauji = mysqli_num_rows($query1);
             <div class="col-lg-12">
                 <div class="row mt-0">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-4 mt-5">
                             <div class="card">
                                 <div class="card-body" style="background-color: #bdd4e9;">
                                     <h5 class="card-title" style="text-align: justify;">
@@ -49,7 +49,7 @@ $jumlah_datauji = mysqli_num_rows($query1);
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-4 mt-5">
                             <div class="card bg-transparent">
                                 <div class="card-body" style="background-color: #bdd4e9;">
                                     <h5 class="card-title" style="text-align: justify;">

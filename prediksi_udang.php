@@ -1,7 +1,7 @@
 <?php
 require "proses/session.php";
 
-$sql = mysqli_query($conn, "SELECT * FROM data_uji");
+$sql = mysqli_query($conn, "SELECT * FROM tabel_hasil");
 
 ?>
 <!DOCTYPE html>
@@ -78,11 +78,11 @@ $sql = mysqli_query($conn, "SELECT * FROM data_uji");
             <!-- start content -->
             <div class="col-12">
                 <div class="content">
-                    <h3>Data Uji</h3>
+                    <h3>Prediksi</h3>
                     <div class="card-body">
                         <div class="data_table">
-                            <a class='btn  btn-success btn-flat' href='tambah_datauji.php' style="margin-bottom: 10px;">Tambah Data</a>
-                            <table id="example" class="table table-striped" style="width:100%">
+                            <a class='btn  btn-success btn-flat' href='tambah_dataprediksiudang.php' style="margin-bottom: 10px;">Tambah Data</a>
+                            <table id="example" class="table table-striped" style="width:100%; margin-bottom: 10px;">
                                 <thead class="table-light">
                                     <tr>
                                         <th>No</th>
@@ -92,6 +92,7 @@ $sql = mysqli_query($conn, "SELECT * FROM data_uji");
                                         <th>Permintaan</th>
                                         <th>Persediaan</th>
                                         <th>Produksi</th>
+                                        <th>Hasil Prediksi</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -109,65 +110,37 @@ $sql = mysqli_query($conn, "SELECT * FROM data_uji");
                                             <td><?php echo $data['permintaan'] . "<br>"; ?></td>
                                             <td><?php echo $data['persediaan'] . "<br>"; ?></td>
                                             <td><?php echo $data['produksi'] . "<br>"; ?></td>
+                                            <td><?php echo $data['hasil'] . "<br>"; ?></td>
                                             <td>
-                                                <button type="button" class="btn btn-dark link-dark" data-bs-toggle="modal" data-bs-target="#exampleModaledit<?php echo $no ?>" style="background-color: #727c85;">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                                <!-- BUTTON HITUNG -->
+                                                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalHitung<?php echo $no ?>">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2z" />
+                                                        <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466" />
                                                     </svg>
                                                 </button>
-                                                <!-- Modal Edit -->
-                                                <div class="modal fade" id="exampleModaledit<?php echo $no ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog modal-lg">
+                                                <!-- Modal Hitung -->
+                                                <div class="modal fade" id="exampleModalHitung<?php echo $no ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                                                                    Edit Data Uji
-                                                                </h1>
+                                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Hitung Prediksi</h1>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
-                                                            <form method="POST" action="proses/proses_edit_datauji.php">
+                                                            <form method="POST" action="proses/proses_hitung_udang.php">
+                                                                <input type="hidden" name="id_hasil" value="<?php echo $data['id_hasil'] ?>">
                                                                 <div class="modal-body">
-                                                                    <div class="row">
-                                                                        <input type="hidden" name="id_duji" value="<?php echo $data['id_duji'] ?>">
-                                                                        <div class="div col-lg-4">
-                                                                            <label for="recipient-name" class="form-label">Kode Produk</label>
-                                                                            <input type="text" name="kode_produk" class="input" value="<?php echo $data['kode_produk'] ?>">
-                                                                        </div>
-                                                                        <div class="div col-lg-4">
-                                                                            <label for="recipient-name" class="form-label">Nama Produk</label>
-                                                                            <input type="text" name="nama_produk" class="input" value="<?php echo $data['nama_produk'] ?>">
-                                                                        </div>
-
-                                                                        <div class="div col-lg-4">
-                                                                            <label for="recipient-name" class="form-label">Periode</label><br>
-                                                                            <input type="date" class="input" name="periode" value="<?php echo $data['periode'] ?>">
-                                                                        </div>
-                                                                    </div><br>
-                                                                    <div class="row">
-                                                                        <div class="div col-lg-4">
-                                                                            <label for="recipient-name" class="form-label">Permintaan</label><br>
-                                                                            <input type="text" class="input" name="permintaan" value="<?php echo $data['permintaan'] ?>">
-                                                                        </div>
-                                                                        <div class="div col-lg-4">
-                                                                            <label for="recipient-name" class="form-label">Persediaan</label>
-                                                                            <input type="text" class="input" name="persediaan" value="<?php echo $data['persediaan'] ?>">
-                                                                        </div>
-                                                                        <div class="div col-lg-4">
-                                                                            <label for="recipient-name" class="form-label">Produksi</label>
-                                                                            <input type="text" class="input" name="produksi" value="<?php echo $data['produksi'] ?>">
-                                                                        </div>
-                                                                    </div><br>
+                                                                    Yakin ingin menghitung data ini?
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                                    <button type="submit" class="btn btn-dark">Ubah</button>
+                                                                    <button type="submit" class="btn btn-dark">Hitung</button>
                                                                 </div>
                                                             </form>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- End Modal Edit -->
+                                                <!-- End Modal Delete -->
                                                 <!-- button delete -->
                                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModaldelete<?php echo $no ?>">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
@@ -179,11 +152,11 @@ $sql = mysqli_query($conn, "SELECT * FROM data_uji");
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus Data Uji</h1>
+                                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus Data Prediksi</h1>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
-                                                            <form method="POST" action="proses/proses_delete_datauji.php">
-                                                                <input type="hidden" name="id_duji" value="<?php echo $data['id_duji'] ?>">
+                                                            <form method="POST" action="proses/proses_delete_datahasil.php">
+                                                                <input type="hidden" name="id_hasil" value="<?php echo $data['id_hasil'] ?>">
                                                                 <div class="modal-body">
                                                                     Yakin ingin menghapus produk data ini?
                                                                 </div>
@@ -230,7 +203,7 @@ $sql = mysqli_query($conn, "SELECT * FROM data_uji");
                     "infoFiltered": "(Difilter dari _MAX_ total masukan)",
                     "infoPostFix": "",
                     "thousands": ",",
-                    "lengthMenu": "Menampilkan _MENU_ Masukan Data Uji",
+                    "lengthMenu": "Menampilkan _MENU_ Masukan Data Training",
                     "loadingRecords": "Memuat...",
                     "processing": "Sedang di proses...",
                     "search": "Pencarian:",
