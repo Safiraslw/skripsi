@@ -81,11 +81,11 @@ function defuzzification($rules)
         return 0; // Nilai default jika $rules bukan array atau kosong
     } else {
         $rule = min($rules); // Menggunakan metode MIN untuk mengambil nilai dari aturan fuzzy
-        $aggregated_rule = max($rules); // Menggunakan metode MIN untuk mengambil nilai dari aturan fuzzy
+        $aggregated_rule = max($rules); // Menggunakan metode MAX untuk mengambil nilai dari aturan fuzzy
     }
 
-    $batas1 = $rule * ($max_output - $min_output) + $min_output;
-    $batas2 = $aggregated_rule * ($max_output - $min_output) + $min_output;
+    $batas1 = (($max_output - $min_output) * $rule) + $min_output;
+    $batas2 = (($max_output - $min_output) * $aggregated_rule) + $min_output;
 
     $momen1 = ($rule / 2) * ($batas1 ** 2);
     $momen2 = ((((1 / ($max_output - $min_output)) / 3) * ($batas2 ** 3) - ($min_output / ($max_output - $min_output) / 2) * ($batas2 ** 2)) - (((1 / ($max_output - $min_output)) / 3) * ($batas1 ** 3) - ($min_output / ($max_output - $min_output) / 2) * ($batas1 ** 2)));
@@ -126,7 +126,7 @@ $min_produksi = $range['min_produksi'];
 // echo "max = $max_produksi <br>";
 // echo "min = $min_produksi <br>";
 
-$tampil_data = mysqli_query($conn, "SELECT * FROM tabel_hasil");
+$tampil_data = mysqli_query($conn, "SELECT * FROM tabel_hasil WHERE kode_produk= 'B01'");
 
 while ($r = mysqli_fetch_array($tampil_data)) {
     $id_hasil = $r['id_hasil'];

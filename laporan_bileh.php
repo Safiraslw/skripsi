@@ -21,7 +21,10 @@ $sqli = $sql;
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/DataTables/DataTables-1.13.5/css/dataTables.bootstrap5.min.css" />
     <link rel="stylesheet" href="css/pdf.css">
-    <title>Document</title>
+    <title>Sistem Prediksi</title>
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/dashboard.css">
 
     <style>
         body::-webkit-scrollbar {
@@ -35,13 +38,6 @@ $sqli = $sql;
             font-size: small;
         }
 
-        .content {
-            position: relative;
-            align-items: center;
-            margin-right: 20px;
-            margin-left: 50px;
-        }
-
         .modal-body {
             background-color: #668FB3;
         }
@@ -52,8 +48,6 @@ $sqli = $sql;
             border-bottom-left-radius: 3px;
             border-top-right-radius: 3px;
             border-bottom-right-radius: 3px;
-            margin-top: 50px;
-            margin-bottom: 50px;
         }
 
         .modal-body .input {
@@ -75,98 +69,107 @@ $sqli = $sql;
     </style>
 </head>
 
-<body style="background-color: #668FB3;">
-    <div class="row">
-        <div class="col-2">
-            <!-- START SIDEBAR -->
+<body>
+    <div class="wrapper">
+        <!-- START SIDEBAR -->
+        <?php
+        require "sidebar.php";
+        ?>
+        <!-- END SIDEBAR -->
+        <div class="main">
+            <!-- START NAVBAR -->
             <?php
-            require "sidebar.php";
+            require "navbar.php";
             ?>
-            <!-- END SIDEBAR -->
-        </div>
-        <div class="col-10">
-            <!-- start content -->
-            <div class="col-12">
-                <div class="content">
-                    <div class="card-body">
-                        <div class="data_table">
-                            <h1 class="ms-0" style="text-align: center;">Laporan Produksi Bileh</h1>
-                            <div class="row">
-                                <form method="GET" action="laporan_bileh.php">
-                                    <div class="row mb-2">
-                                        <label for="inputmulai" class="col-sm-3 col-form-label">Strat From</label>
-                                        <label for="inputsampai" class="col-sm-3 col-form-label">To</label>
+            <!-- END NAVBAR -->
+            <main class="content px-3 py-4">
+                <div class="container-fluid">
+                    <div class="mb-3">
+                        <h3 class="fw-bold fs-4 mb-3">Laporan Produksi Bileh Crispy</h3>
+                        <div class="col-12">
+                            <div class="card border-0">
+                                <div class="card-body">
+                                    <div class="data_table">
+                                        <div class="row">
+                                            <form method="GET" action="laporan_bileh.php">
+                                                <div class="row mb-2">
+                                                    <label for="inputmulai" class="col-sm-3 col-form-label">Strat From</label>
+                                                    <label for="inputsampai" class="col-sm-3 col-form-label">To</label>
+                                                </div>
+                                                <div class="row mb-2">
+                                                    <div class="col-sm-3">
+                                                        <input type="date" class="form-control border-0" name="inputmulai" style="background-color: #F5F5DC;">
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <input type="date" class="form-control border-0" name="inputsampai" style="background-color: #F5F5DC;">
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <button type="submit" class="btn btn-success">Preview</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <table id="example" class="table table-striped">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Kode Produk</th>
+                                                    <th>Nama Produk</th>
+                                                    <th>Periode</th>
+                                                    <th>Permintaan</th>
+                                                    <th>Persediaan</th>
+                                                    <th>Prediksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $no = 0;
+                                                while ($data = mysqli_fetch_array($sql)) {
+                                                    $no++;
+                                                ?>
+                                                    <tr>
+                                                        <th scope="row"><?php echo $no ?></th>
+                                                        <td><?php echo $data['kode_produk'] . "<br>"; ?></td>
+                                                        <td><?php echo $data['nama_produk'] . "<br>"; ?></td>
+                                                        <td><?php echo date('d F Y', strtotime($data['periode'])) . "<br>"; ?></td>
+                                                        <td><?php echo $data['permintaan'] . "<br>"; ?></td>
+                                                        <td><?php echo $data['persediaan'] . "<br>"; ?></td>
+                                                        <td><?php echo $data['produksi'] . "<br>"; ?></td>
+                                                    </tr>
+                                                <?php } ?>
+                                            </tbody>
+                                        </table>
+                                        <div class="row mb-2">
+                                            <?php
+                                            if (empty($_GET['inputmulai']) or empty($_GET['inputsampai'])) {
+                                                $select = mysqli_query($conn, "SELECT * FROM data_training WHERE kode_produk = 'B01'");
+                                                $url_cetak = "proses/pdf_bileh.php";
+                                            } else {
+                                                $start = $_GET['inputmulai'];
+                                                $to = $_GET['inputsampai'];
+                                                $select = mysqli_query($conn, "SELECT * FROM data_training WHERE periode BETWEEN '$start 00:00:00' AND '$to 00:00:00' AND kode_produk = 'B01'");
+                                                $url_cetak = "proses/pdf_bileh.php?inputmulai=" . $start . "&inputsampai=" . $to;
+                                            }
+                                            ?>
+                                            <div class="col-sm-3">
+                                                <button class="btn" type="button" style="background-color: #D2B48C">
+                                                    <a href="<?php echo $url_cetak ?>" class="btn btn-sm">
+                                                        Print<i class="glyphicon glyphicon-download-alt"></i>
+                                                    </a>
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="row mb-2">
-                                        <div class="col-sm-3">
-                                            <input type="date" class="form-control border-0" name="inputmulai" style="background-color: #F5F5DC;">
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <input type="date" class="form-control border-0" name="inputsampai" style="background-color: #F5F5DC;">
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <button type="submit" class="btn btn-success">Preview</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <table id="example" class="table table-striped">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Kode Produk</th>
-                                        <th>Nama Produk</th>
-                                        <th>Periode</th>
-                                        <th>Permintaan</th>
-                                        <th>Persediaan</th>
-                                        <th>Prediksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $no = 0;
-                                    while ($data = mysqli_fetch_array($sql)) {
-                                        $no++;
-                                    ?>
-                                        <tr>
-                                            <th scope="row"><?php echo $no ?></th>
-                                            <td><?php echo $data['kode_produk'] . "<br>"; ?></td>
-                                            <td><?php echo $data['nama_produk'] . "<br>"; ?></td>
-                                            <td><?php echo date('d F Y', strtotime($data['periode'])) . "<br>"; ?></td>
-                                            <td><?php echo $data['permintaan'] . "<br>"; ?></td>
-                                            <td><?php echo $data['persediaan'] . "<br>"; ?></td>
-                                            <td><?php echo $data['produksi'] . "<br>"; ?></td>
-                                        </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
-                            <div class="row mb-2">
-                                <?php
-                                if (empty($_GET['inputmulai']) or empty($_GET['inputsampai'])) {
-                                    $select = mysqli_query($conn, "SELECT * FROM data_training WHERE kode_produk = 'B01'");
-                                    $url_cetak = "proses/pdf_bileh.php";
-                                } else {
-                                    $start = $_GET['inputmulai'];
-                                    $to = $_GET['inputsampai'];
-                                    $select = mysqli_query($conn, "SELECT * FROM data_training WHERE periode BETWEEN '$start 00:00:00' AND '$to 00:00:00' AND kode_produk = 'B01'");
-                                    $url_cetak = "proses/pdf_bileh.php?inputmulai=" . $start . "&inputsampai=" . $to;
-                                }
-                                ?>
-                                <div class="col-sm-3">
-                                    <button class="btn" type="button" style="background-color: #D2B48C">
-                                        <a href="<?php echo $url_cetak ?>" class="btn btn-sm">
-                                            Print<i class="glyphicon glyphicon-download-alt"></i>
-                                        </a>
-                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- end content -->
+            </main>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
 
     <!-- Page level custom scripts -->
     <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
@@ -189,7 +192,7 @@ $sqli = $sql;
                     "infoFiltered": "(Difilter dari _MAX_ total masukan)",
                     "infoPostFix": "",
                     "thousands": ",",
-                    "lengthMenu": "Menampilkan _MENU_ Masukan Data Uji",
+                    "lengthMenu": "Menampilkan _MENU_ Masukan Data",
                     "loadingRecords": "Memuat...",
                     "processing": "Sedang di proses...",
                     "search": "Pencarian:",

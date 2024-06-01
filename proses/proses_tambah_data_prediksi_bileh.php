@@ -118,7 +118,7 @@ include "koneksi.php";
 $query = "SELECT MAX(permintaan) as max_permintaan, MIN(permintaan) as min_permintaan, 
             MAX(persediaan) as max_persediaan, MIN(persediaan) as min_persediaan, 
             MAX(produksi) as max_produksi, MIN(produksi) as min_produksi
-            FROM data_training WHERE kode_produk= 'B01'";
+            FROM data_training WHERE kode_produk= 'B02'";
 
 $result = mysqli_query($conn, $query);
 $range = mysqli_fetch_assoc($result);
@@ -138,7 +138,7 @@ $min_produksi = $range['min_produksi'];
 // echo "max = $max_produksi <br>";
 // echo "min = $min_produksi <br>";
 
-$tampil_data = mysqli_query($conn, "SELECT * FROM tabel_hasil WHERE kode_produk = 'B01'");
+$tampil_data = mysqli_query($conn, "SELECT * FROM tabel_hasil WHERE kode_produk = 'B02'");
 
 while ($r = mysqli_fetch_array($tampil_data)) {
     $id_hasil = $r['id_hasil'];
@@ -152,10 +152,10 @@ while ($r = mysqli_fetch_array($tampil_data)) {
     $update = mysqli_query($conn, "UPDATE tabel_hasil SET hasil='$hasil' WHERE id_hasil='$id_hasil'");
     if ($update) {
         echo "<script>alert('Data berhasil diperbaharui')</script>";
-        echo "<script>window.location='../prediksi_udang.php';</script>";
+        echo "<script>window.location='../prediksi_bileh.php';</script>";
     } else {
         echo "<script>alert('Data tidak berhasil diperbaharui')</script>";
-        echo "<script>window.location='../prediksi_udang.php';</script>";
+        echo "<script>window.location='../tambah_dataprediksibileh.php';</script>";
     }
 }
 
