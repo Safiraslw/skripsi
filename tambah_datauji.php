@@ -80,37 +80,37 @@ require "proses/session.php";
                                         <div class="row">
                                             <div class="div col-lg-6">
                                                 <h5>Kode Produk</h5>
-                                                <input type="text" name="kode_produk" class="input">
+                                                <input type="text" name="kode_produk" class="input" required="required">
                                             </div>
                                             <div class="div col-lg-6">
                                                 <h5>Nama Produk</h5>
-                                                <input type="text" name="nama_produk" class="input">
+                                                <input type="text" name="nama_produk" class="input" required="required">
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="div col-lg-6">
                                                 <h5>Periode</h5>
-                                                <input type="date" name="periode" class="input">
+                                                <input type="date" name="periode" class="input" required="required">
                                             </div>
                                             <div class="div col-lg-6">
                                                 <h5>Permintaan</h5>
-                                                <input type="text" name="permintaan" class="input">
+                                                <input type="text" name="permintaan" class="input" required="required">
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="div col-lg-6">
                                                 <h5>Persediaan</h5>
-                                                <input type="text" class="input" name="persediaan">
+                                                <input type="text" class="input" name="persediaan" required="required">
                                             </div>
                                             <div class="div col-lg-6">
                                                 <h5>Produksi</h5>
-                                                <input type="text" class="input" name="produksi">
+                                                <input type="text" class="input" name="produksi" required="required">
                                             </div>
                                         </div>
                                         <br>
                                         <div class="button">
-                                            <button class="btn btn-dark" type="submit" style="background-color: #1c1c1c;">Simpan</button>
-                                            <button class="btn btn-dark" type="reset" style="background-color: #1c1c1c;">Batal</button>
+                                            <button class="btn btn-info" type="submit">Simpan</button>
+                                            <a href="data_uji.php" class="btn btn-secondary">Batal</a>
                                         </div>
                                     </form>
                                 </div>

@@ -30,7 +30,7 @@ $sql = mysqli_query($conn, "SELECT * FROM data_training");
         }
 
         .modal-body {
-            background-color: #668FB3;
+            background-color: #fff;
         }
 
         .card-body {
@@ -45,9 +45,9 @@ $sql = mysqli_query($conn, "SELECT * FROM data_training");
             border: 0;
             border-bottom: 1px solid #000;
             width: 200px;
-            background-color: #668FB3;
-            border-color: #fff;
-            color: #fff;
+            background-color: #ffff;
+            border-color: black;
+            color: black;
         }
 
         .modal-body form input:focus {
@@ -161,7 +161,7 @@ $sql = mysqli_query($conn, "SELECT * FROM data_training");
                                                                             </div>
                                                                             <div class="modal-footer">
                                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                                                <button type="submit" class="btn btn-dark">Ubah</button>
+                                                                                <button type="submit" class="btn btn-success">Ubah</button>
                                                                             </div>
                                                                         </form>
                                                                     </div>
@@ -189,7 +189,7 @@ $sql = mysqli_query($conn, "SELECT * FROM data_training");
                                                                             </div>
                                                                             <div class="modal-footer">
                                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                                                <button type="submit" class="btn btn-dark">Hapus</button>
+                                                                                <button type="submit" class="btn btn-danger">Hapus</button>
                                                                             </div>
                                                                         </form>
                                                                     </div>

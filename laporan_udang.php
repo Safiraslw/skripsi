@@ -39,7 +39,7 @@ $sqli = $sql;
         }
 
         .modal-body {
-            background-color: #668FB3;
+            background-color: #fff;
         }
 
         .card-body {
@@ -48,23 +48,6 @@ $sqli = $sql;
             border-bottom-left-radius: 3px;
             border-top-right-radius: 3px;
             border-bottom-right-radius: 3px;
-        }
-
-        .modal-body .input {
-            border: 0;
-            border-bottom: 1px solid #000;
-            width: 200px;
-            background-color: #668FB3;
-            border-color: #fff;
-            color: #fff;
-        }
-
-        .modal-body form input:focus {
-            outline-width: 0;
-        }
-
-        .modal-body .form-label {
-            color: #fff;
         }
     </style>
 </head>
@@ -98,13 +81,13 @@ $sqli = $sql;
                                                 </div>
                                                 <div class="row mb-2">
                                                     <div class="col-sm-3">
-                                                        <input type="date" class="form-control border-0" name="inputmulai" style="background-color: #F5F5DC;">
+                                                        <input type="date" class="form-control border-1" name="inputmulai" style="background-color: #fff; border-color: #000">
                                                     </div>
                                                     <div class="col-sm-3">
-                                                        <input type="date" class="form-control border-0" name="inputsampai" style="background-color: #F5F5DC;">
+                                                        <input type="date" class="form-control border-1" name="inputsampai" style="background-color: #fff; border-color: #000">
                                                     </div>
                                                     <div class="col-sm-3">
-                                                        <button type="submit" class="btn btn-success">Preview</button>
+                                                        <button type="submit" class="btn btn-info">Preview</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -152,7 +135,7 @@ $sqli = $sql;
                                             }
                                             ?>
                                             <div class="col-sm-3">
-                                                <button class="btn" type="button" style="background-color: #D2B48C">
+                                                <button class="btn btn-success" type="button">
                                                     <a href="<?php echo $url_cetak ?>" class="btn btn-sm">
                                                         Print<i class="glyphicon glyphicon-download-alt"></i>
                                                     </a>

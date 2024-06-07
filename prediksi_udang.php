@@ -31,7 +31,7 @@ $sql = mysqli_query($conn, "SELECT * FROM tabel_hasil WHERE kode_produk='B01'");
         }
 
         .modal-body {
-            background-color: #668FB3;
+            background-color: #ffff;
         }
 
         .card-body {
@@ -135,7 +135,7 @@ $sql = mysqli_query($conn, "SELECT * FROM tabel_hasil WHERE kode_produk='B01'");
                                                                             </div>
                                                                             <div class="modal-footer">
                                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                                                <button type="submit" class="btn btn-dark">Hitung</button>
+                                                                                <button type="submit" class="btn btn-success">Hitung</button>
                                                                             </div>
                                                                         </form>
                                                                     </div>
@@ -163,7 +163,7 @@ $sql = mysqli_query($conn, "SELECT * FROM tabel_hasil WHERE kode_produk='B01'");
                                                                             </div>
                                                                             <div class="modal-footer">
                                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                                                <button type="submit" class="btn btn-dark">Hapus</button>
+                                                                                <button type="submit" class="btn btn-danger">Hapus</button>
                                                                             </div>
                                                                         </form>
                                                                     </div>

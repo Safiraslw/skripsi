@@ -12,13 +12,13 @@ if (isset($_POST['login'])) {
 
     if (empty($_POST['username']) && empty($_POST['password'])) {
         echo "<script>alert('Please Fill Username and Password');</script>";
-        exit;
+        echo "<script> window.location='../login.php';</script>";
     } elseif (empty($_POST['password'])) {
         echo "<script>alert('Please Fill Password');</script>";
-        exit;
+        echo "<script> window.location='../login.php';</script>";
     } elseif (empty($_POST['username'])) {
         echo "<script>alert('Please Fill Username);</script>";
-        exit;
+        echo "<script> window.location='../login.php';</script>";
     } else {
         if (mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_array($result);
@@ -35,7 +35,7 @@ if (isset($_POST['login'])) {
             }
         } else {
             echo "<script>alert('Username atau Password Salah');</script>";
-            echo "<script> window.location='../index.php';</script>";
+            echo "<script> window.location='../login.php';</script>";
             exit;
         }
     }

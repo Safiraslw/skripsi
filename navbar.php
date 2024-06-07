@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand px-4 py-3" style="background-color: #adb5bd;">
+<nav class="navbar navbar-expand px-4 py-3" style="background-color: #d7e3fc;">
     <div class="navbar-collapse collapse">
         <ul class="navbar-nav ms-auto">
             <li class="nav-item dropdown">

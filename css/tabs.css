@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+
+.tabs {
+    width: 300px;
+    margin: 0 auto;
+}
+
+.nav-tabs {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 2px solid #ccc;
+}
+
+.nav-tabs .tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.3s ease;
+}
+
+.nav-tabs .tab:hover,
+.nav-tabs .tab.active {
+    border-bottom: 2px solid #007BFF;
+}
+
+.tab-content {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border: 1px;
+}
+
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+}

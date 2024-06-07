@@ -27,14 +27,6 @@ if ($query->num_rows > 0) {
 </head>
 
 <style>
-    .card-body {
-        background-color: #fff;
-        border-top-left-radius: 3px;
-        border-bottom-left-radius: 3px;
-        border-top-right-radius: 3px;
-        border-bottom-right-radius: 3px;
-    }
-
     .grafik{
         margin-top: 30px;
         position: relative;
@@ -62,7 +54,7 @@ if ($query->num_rows > 0) {
                         <h3 class="fw-bold fs-4 mb-3">Grafik Data Udang Crispy</h3>
                         <div class="col-12">
                             <div class="card border-0">
-                                <div class="card-body">
+                                <div class="card-body" style="border-radius: 25px;">
                                     <div class="grafik">
                                         <canvas id="myChart"></canvas>
                                     </div>

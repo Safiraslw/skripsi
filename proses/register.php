@@ -11,8 +11,8 @@ if (isset($_POST['register'])) {
     $sql   = "INSERT INTO `tabel_akun`(`name`, `username`, `password`) VALUES ('$name','$username','$pass')";
     $result = mysqli_query($conn, $sql);
     if ($result) {
-        header("Location: ../index.php");
-        echo "<script>alert('New User Register Success');</script>";
+        echo "<script>alert('Register Akun Baru Berhasil');</script>";
+        header("Location: ../login.php");
     } else {
         die(mysqli_error($conn));
     }
