@@ -12,11 +12,11 @@ $produksi           = $_POST['produksi'];
 $sql    = mysqli_query($conn, "INSERT INTO data_uji (kode_produk, nama_produk, periode, permintaan, persediaan, produksi)
             VALUES ('$kode_produk','$nama_produk','$tanggal','$permintaan','$persediaan','$produksi')");
 if ($sql) {
-    echo "<script>alert('Data training berhasil ditambah')</script>";
+    echo "<script>alert('Data uji berhasil ditambah')</script>";
     echo "<script>window.location='../data_uji.php';</script>";
     // header("Location: ../gardu");
 } else {
-    echo "<script>alert('Data training tidak berhasil ditambah')</script>";
+    echo "<script>alert('Data uji tidak berhasil ditambah')</script>";
     // header("Location: ../gardu");
     echo "<script>window.location='../tambah_datauji.php';</script>";
 }

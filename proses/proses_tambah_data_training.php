@@ -20,3 +20,4 @@ if ($sql) {
     // header("Location: ../gardu");
     echo "<script>window.location='../tambah_datatraining.php';</script>";
 }
+?>

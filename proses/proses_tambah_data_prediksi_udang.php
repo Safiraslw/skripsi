@@ -86,33 +86,32 @@ function evaluateRules($permintaan, $persediaan)
 // Defuzzifikasi (Centroid Method)
 function defuzzification($rules)
 {
-    global $max_produksi, $min_produksi;
-    $min_output = $min_produksi;
-    $max_output = $max_produksi;
     if (!is_array($rules) || empty($rules)) {
         return 0; // Nilai default jika $rules bukan array atau kosong
     } else {
-        $rule = min($rules); // Menggunakan metode MIN untuk mengambil nilai dari aturan fuzzy
-        $aggregated_rule = max($rules); // Menggunakan metode MAX untuk mengambil nilai dari aturan fuzzy
+        $rule = min($rules); // Menggunakan metode MIN untuk evaluasi rule
+        $aggregated_rule = max($rules); // Menggunakan metode MAX untuk agregasi rule 
     }
 
-    $batas1 = (($max_output - $min_output) * $rule) + $min_output;
-    $batas2 = (($max_output - $min_output) * $aggregated_rule) + $min_output;
+    global $max_produksi, $min_produksi;
+    $min_output = $min_produksi;
+    $max_output = $max_produksi;
+
+    $batas1 = (($max_output - $min_output) * $rule) + $min_output; //batas area1
+    $batas2 = (($max_output - $min_output) * $aggregated_rule) + $min_output; //batas area2
 
     $momen1 = ($rule / 2) * ($batas1 ** 2);
     $momen2 = ((((1 / ($max_output - $min_output)) / 3) * ($batas2 ** 3) - ($min_output / ($max_output - $min_output) / 2) * ($batas2 ** 2)) - (((1 / ($max_output - $min_output)) / 3) * ($batas1 ** 3) - ($min_output / ($max_output - $min_output) / 2) * ($batas1 ** 2)));
     $momen3 = (($aggregated_rule / 2 * ($max_output ** 2)) - ($aggregated_rule / 2 * ($batas2 ** 2)));
 
-    $A1 = ($batas1 * $rule);
-    $A2 = (($rule + $aggregated_rule) * (($batas2 - $batas1) / 2));
-    $A3 = (($max_output - $batas2) * $aggregated_rule);
+    $A1 = ($batas1 * $rule); //luas area1
+    $A2 = (($rule + $aggregated_rule) * (($batas2 - $batas1) / 2)); //luas area2
+    $A3 = (($max_output - $batas2) * $aggregated_rule); //luas area3
 
     $centroid = ($momen1 + $momen2 + $momen3) / ($A1 + $A2 + $A3);
 
     return $centroid;
 }
-
-include "koneksi.php";
 
 // Ambil nilai maksimum dan minimum dari permintaan, persediaan, dan produksi
 $query = "SELECT MAX(permintaan) as max_permintaan, MIN(permintaan) as min_permintaan, 
@@ -151,11 +150,12 @@ while ($r = mysqli_fetch_array($tampil_data)) {
 
     $update = mysqli_query($conn, "UPDATE tabel_hasil SET hasil='$hasil' WHERE id_hasil='$id_hasil'");
     if ($update) {
-        echo "<script>alert('Data berhasil diperbaharui')</script>";
+        echo "<script>alert('Data prediksi berhasil ditambah')</script>";
         echo "<script>window.location='../prediksi_udang.php';</script>";
     } else {
-        echo "<script>alert('Data tidak berhasil diperbaharui')</script>";
-        echo "<script>window.location='../prediksi_udang.php';</script>";
+        echo "<script>alert('Data prediksi tidak berhasil ditambah')</script>";
+        echo "<script>window.location='../tambah_dataprediksiudang.php';</script>";
     }
 }
 
+?>

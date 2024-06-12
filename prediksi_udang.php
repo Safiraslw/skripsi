@@ -113,35 +113,6 @@ $sql = mysqli_query($conn, "SELECT * FROM tabel_hasil WHERE kode_produk='B01'");
                                                         <td><?php echo $data['produksi'] . "<br>"; ?></td>
                                                         <td><?php echo $data['hasil'] . "<br>"; ?></td>
                                                         <td>
-                                                            <!-- BUTTON HITUNG -->
-                                                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalHitung<?php echo $no ?>">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
-                                                                    <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2z" />
-                                                                    <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466" />
-                                                                </svg>
-                                                            </button>
-                                                            <!-- Modal Hitung -->
-                                                            <div class="modal fade" id="exampleModalHitung<?php echo $no ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                                <div class="modal-dialog">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Hitung Prediksi</h1>
-                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                        </div>
-                                                                        <form method="POST" action="proses/proses_hitung_udang.php">
-                                                                            <input type="hidden" name="id_hasil" value="<?php echo $data['id_hasil'] ?>">
-                                                                            <div class="modal-body">
-                                                                                Yakin ingin menghitung data ini?
-                                                                            </div>
-                                                                            <div class="modal-footer">
-                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                                                <button type="submit" class="btn btn-success">Hitung</button>
-                                                                            </div>
-                                                                        </form>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!-- End Modal Delete -->
                                                             <!-- button delete -->
                                                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModaldelete<?php echo $no ?>">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">

@@ -86,15 +86,16 @@ function evaluateRules($permintaan, $persediaan)
 // Defuzzifikasi (Centroid Method)
 function defuzzification($rules)
 {
-    global $max_produksi, $min_produksi;
-    $min_output = $min_produksi;
-    $max_output = $max_produksi;
     if (!is_array($rules) || empty($rules)) {
         return 0; // Nilai default jika $rules bukan array atau kosong
     } else {
         $rule = min($rules); // Menggunakan metode MIN untuk mengambil nilai dari aturan fuzzy
         $aggregated_rule = max($rules); // Menggunakan metode MAX untuk mengambil nilai dari aturan fuzzy
     }
+
+    global $max_produksi, $min_produksi;
+    $min_output = $min_produksi;
+    $max_output = $max_produksi;
 
     $batas1 = (($max_output - $min_output) * $rule) + $min_output;
     $batas2 = (($max_output - $min_output) * $aggregated_rule) + $min_output;
@@ -151,10 +152,10 @@ while ($r = mysqli_fetch_array($tampil_data)) {
 
     $update = mysqli_query($conn, "UPDATE tabel_hasil SET hasil='$hasil' WHERE id_hasil='$id_hasil'");
     if ($update) {
-        echo "<script>alert('Data berhasil diperbaharui')</script>";
+        echo "<script>alert('Data prediksi berhasil ditambah')</script>";
         echo "<script>window.location='../prediksi_bileh.php';</script>";
     } else {
-        echo "<script>alert('Data tidak berhasil diperbaharui')</script>";
+        echo "<script>alert('Data prediksi tidak berhasil ditambah')</script>";
         echo "<script>window.location='../tambah_dataprediksibileh.php';</script>";
     }
 }

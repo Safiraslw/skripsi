@@ -18,12 +18,14 @@ $pdf->Cell(2,0.7,"Tanggal Cetak : ".date('d-m-Y h:i:s')." || Dicetak Oleh : ".$_
 // $tampil_hasil = mysqli_query($conn, "SELECT * FROM data_training");
 
 if(empty($_GET['inputmulai']) or empty($_GET['inputsampai'])){
-    $select = mysqli_query($conn, "SELECT * FROM data_training WHERE kode_produk = 'B01'");
+    $select = mysqli_query($conn, "SELECT * FROM data_training WHERE kode_produk = 'B01' UNION 
+	SELECT * FROM data_uji WHERE kode_produk = 'B01'");
     $label = 'Seluruh Data';
 } else{
     $start = $_GET['inputmulai'];
     $to = $_GET['inputsampai'];
-    $select = mysqli_query($conn, "SELECT * FROM data_training WHERE periode  BETWEEN '$start 00:00:00' AND '$to 00:00:00' AND kode_produk = 'B01'");
+    $select = mysqli_query($conn, "SELECT * FROM data_training WHERE periode  BETWEEN '$start 00:00:00' AND '$to 00:00:00' AND kode_produk = 'B01'
+	UNION SELECT * FROM data_uji WHERE periode  BETWEEN '$start 00:00:00' AND '$to 00:00:00' AND kode_produk = 'B01'");
     $label = 'Periode Tanggal '."$start".' s.d. '.$to;
 }
 
@@ -52,7 +54,7 @@ while($r3=mysqli_fetch_array($select)){
 }
 
 
-$pdf->Output("Laporan_Prediksi.pdf","I");
+$pdf->Output("Laporan_Prediksi_Udang.pdf","I");
 
 ?>
 

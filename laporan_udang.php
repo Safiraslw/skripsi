@@ -2,11 +2,13 @@
 require "proses/session.php";
 
 if (empty($_GET['inputmulai'])) {
-    $sql = mysqli_query($conn, "SELECT * FROM data_training WHERE kode_produk = 'B01'");
+    $sql = mysqli_query($conn, "SELECT * FROM data_training WHERE kode_produk = 'B01' UNION
+SELECT * FROM data_uji WHERE kode_produk = 'B01'");
 } else {
     $start = $_GET['inputmulai'];
     $to = $_GET['inputsampai'];
-    $sql = mysqli_query($conn, "SELECT * FROM data_training WHERE periode BETWEEN '$start 00:00:00' AND '$to 00:00:00' AND kode_produk ='B01'");
+    $sql = mysqli_query($conn, "SELECT * FROM data_training WHERE periode BETWEEN '$start 00:00:00' AND '$to 00:00:00' AND kode_produk ='B01'
+    UNION SELECT * FROM data_uji WHERE periode BETWEEN '$start 00:00:00' AND '$to 00:00:00' AND kode_produk ='B01'");
 }
 $sqli = $sql;
 
@@ -125,12 +127,14 @@ $sqli = $sql;
                                         <div class="row mb-2">
                                             <?php
                                             if (empty($_GET['inputmulai']) or empty($_GET['inputsampai'])) {
-                                                $select = mysqli_query($conn, "SELECT * FROM data_training WHERE kode_produk = 'B01'");
+                                                $select = mysqli_query($conn, "SELECT * FROM data_training WHERE kode_produk = 'B01' UNION 
+                                                SELECT * FROM data_uji WHERE kode_produk = 'B01'");
                                                 $url_cetak = "proses/pdf_udang.php";
                                             } else {
                                                 $start = $_GET['inputmulai'];
                                                 $to = $_GET['inputsampai'];
-                                                $select = mysqli_query($conn, "SELECT * FROM data_training WHERE periode BETWEEN '$start 00:00:00' AND '$to 00:00:00' AND kode_produk = 'B01'");
+                                                $select = mysqli_query($conn, "SELECT * FROM data_training WHERE periode BETWEEN '$start 00:00:00' AND '$to 00:00:00' AND kode_produk ='B01' 
+                                                UNION SELECT * FROM data_uji WHERE periode BETWEEN '$start 00:00:00' AND '$to 00:00:00' AND kode_produk ='B01'");
                                                 $url_cetak = "proses/pdf_udang.php?inputmulai=" . $start . "&inputsampai=" . $to;
                                             }
                                             ?>

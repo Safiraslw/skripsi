@@ -95,7 +95,7 @@ $datahasil2 = mysqli_num_rows($query5);
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
-                                    <div class="card-header">
+                                    <div class="card-header" style="background-color: #fff;">
                                         <h3 class="mb-2 fw-bold">Informasi Sistem</h3>
                                         <br>
                                         <ul class="nav-tabs card-header-tabs">

@@ -20,7 +20,7 @@
                 <li><a href="#">Contact</a></li>
                 <li><a href="#">About Us</a></li>
             </ul>
-            <a href="login.php" class="btn">Sign Up</a>
+            <a href="login.php" class="btn">Login</a>
         </header>
         <div class="content">
             <div class="contentBx">

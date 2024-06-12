@@ -1,7 +1,11 @@
 <?php
 require "proses/session.php";
 
-$query = mysqli_query($conn, "SELECT * FROM data_training WHERE kode_produk = 'B02'");
+$query = mysqli_query($conn, "SELECT * FROM data_training WHERE kode_produk = 'B02'
+UNION
+SELECT * FROM data_uji WHERE kode_produk = 'B02'");
+
+// $data = mysqli_fetch_assoc($query)
 
 $data = array();
 if ($query->num_rows > 0) {
@@ -31,7 +35,7 @@ if ($query->num_rows > 0) {
         margin-top: 30px;
         position: relative;
         width: 100%;
-        height: 500px;
+        /* height: 500px; */
     }
 </style>
 

@@ -12,8 +12,10 @@ if (isset($_POST['register'])) {
     $result = mysqli_query($conn, $sql);
     if ($result) {
         echo "<script>alert('Register Akun Baru Berhasil');</script>";
-        header("Location: ../login.php");
+        echo "<script> window.location='../login.php';</script>";
     } else {
-        die(mysqli_error($conn));
+        echo "<script>alert('Register Akun Baru Gagal');</script>";
+        echo "<script> window.location='../form_register.php';</script>";
     }
 }
+?>
