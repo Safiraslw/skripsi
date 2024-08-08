@@ -1,9 +1,7 @@
 <?php
 require "proses/session.php";
 
-$query = mysqli_query($conn, "SELECT * FROM data_training WHERE kode_produk = 'B02'
-UNION
-SELECT * FROM data_uji WHERE kode_produk = 'B02'");
+$query = mysqli_query($conn, "SELECT * FROM tabel_hasil WHERE kode_produk = 'B02'");
 
 // $data = mysqli_fetch_assoc($query)
 
@@ -31,11 +29,14 @@ if ($query->num_rows > 0) {
 </head>
 
 <style>
-    .grafik{
+    body::-webkit-scrollbar {
+        display: none;
+    }
+
+    .grafik {
         margin-top: 30px;
         position: relative;
         width: 100%;
-        /* height: 500px; */
     }
 </style>
 
@@ -56,11 +57,28 @@ if ($query->num_rows > 0) {
                 <div class="container-fluid">
                     <div class="mb-3">
                         <h3 class="fw-bold fs-4 mb-3">Grafik Data Bileh Crispy</h3>
-                        <div class="col-12">
-                            <div class="card border-0">
-                                <div class="card-body" style="border-radius: 25px;">
-                                    <div class="grafik">
-                                        <canvas id="myChart"></canvas>
+                        <div class="row">
+                            <div class="col-12 col-md-6 col-lg-6 mb-3">
+                                <div class="card border-0">
+                                    <div class="card-body" style="border-radius: 25px;">
+                                        <center>
+                                            <h6>Data 2022</h6>
+                                        </center>
+                                        <div class="grafik">
+                                            <canvas id="myChart3"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-6 mb-3">
+                                <div class="card border-0">
+                                    <div class="card-body" style="border-radius: 25px;">
+                                        <center>
+                                            <h6>Data 2023</h6>
+                                        </center>
+                                        <div class="grafik">
+                                            <canvas id="myChart4"></canvas>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -78,49 +96,83 @@ if ($query->num_rows > 0) {
         // Mengambil data dari PHP dan mengubahnya menjadi format JavaScript
         const dataFromPHP = <?php echo json_encode($data); ?>;
 
+        // Fungsi untuk memfilter data berdasarkan tahun
+        function filterDataByYear(data, year) {
+            return data.filter(item => new Date(item.periode).getFullYear() === year);
+        }
+
+        // Mendapatkan data untuk masing-masing tahun
+        const data2022 = filterDataByYear(dataFromPHP, 2022);
+        const data2023 = filterDataByYear(dataFromPHP, 2023);
+
         // Memisahkan data untuk digunakan di Chart.js
-        const periode = dataFromPHP.map(item => item.periode);
-        const permintaan = dataFromPHP.map(item => item.permintaan);
-        const persediaan = dataFromPHP.map(item => item.persediaan);
-        const produksi = dataFromPHP.map(item => item.produksi);
+        function prepareChartData(data) {
+            return {
+                periode: data.map(item => item.periode),
+                permintaan: data.map(item => item.permintaan),
+                persediaan: data.map(item => item.persediaan),
+                penjualan: data.map(item => item.penjualan),
+                hasil: data.map(item => item.hasil)
+            };
+        }
 
-        const ctx = document.getElementById('myChart');
+        // Menyiapkan data untuk masing-masing chart
+        const chartData2022 = prepareChartData(data2022);
+        const chartData2023 = prepareChartData(data2023);
 
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: periode,
-                datasets: [{
-                        label: 'Permintaan',
-                        data: permintaan,
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Persediaan',
-                        data: persediaan,
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Produksi',
-                        data: produksi,
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
-                    }
-                ]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
+        // Fungsi untuk membuat chart
+        function createChart(ctx, data) {
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.periode,
+                    datasets: [{
+                            label: 'Permintaan',
+                            data: data.permintaan,
+                            backgroundColor: 'rgba(255, 0, 0, 0.2)',
+                            borderColor: 'rgba(255, 0, 0, 1)',
+                            borderWidth: 1,
+                            fill: false
+                        },
+                        {
+                            label: 'Persediaan',
+                            data: data.persediaan,
+                            backgroundColor: 'rgba(0, 0, 255, 0.2)',
+                            borderColor: 'rgba(0, 0, 255, 1)',
+                            borderWidth: 1,
+                            fill: false
+                        },
+                        {
+                            label: 'Penjualan',
+                            data: data.penjualan,
+                            backgroundColor: 'rgba(0, 255, 255, 0.2)',
+                            borderColor: 'rgba(0, 255, 255, 1)',
+                            borderWidth: 1,
+                            fill: false
+                        },
+                        {
+                            label: 'Hasil Prediksi',
+                            data: data.hasil,
+                            backgroundColor: 'rgba(0, 255, 0, 0.2)',
+                            borderColor: 'rgba(0, 255, 0, 1)',
+                            borderWidth: 1,
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
                     }
                 }
-            }
-        });
+            });
+        }
+
+        // Membuat chart untuk masing-masing canvas
+        createChart(document.getElementById('myChart3'), chartData2022);
+        createChart(document.getElementById('myChart4'), chartData2023);
     </script>
 
 </body>

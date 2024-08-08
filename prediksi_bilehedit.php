@@ -27,7 +27,7 @@ $sql = mysqli_query($conn, "SELECT * FROM tabel_hasil WHERE kode_produk = 'B02'"
             padding: 10px;
             box-shadow: 1px 3px 5px #aaaa;
             border-radius: 5px;
-            font-size: medium;
+            font-size: small;
         }
 
         .modal-body {
@@ -82,7 +82,7 @@ $sql = mysqli_query($conn, "SELECT * FROM tabel_hasil WHERE kode_produk = 'B02'"
                             <div class="card border-0">
                                 <div class="card-body">
                                     <div class="data_table">
-                                        <a class='btn  btn-success btn-flat' href='tambah_dataprediksibileh.php' style="margin-bottom: 10px;">Tambah Prediksi</a>
+                                        <a class='btn  btn-success btn-flat' href='tambah_dataprediksibileh.php' style="margin-bottom: 10px;">Tambah Data</a>
                                         <table id="example" class="table table-striped" style="width:100%; margin-bottom: 10px;">
                                             <thead class="table-light">
                                                 <tr>
@@ -92,7 +92,7 @@ $sql = mysqli_query($conn, "SELECT * FROM tabel_hasil WHERE kode_produk = 'B02'"
                                                     <th>Periode</th>
                                                     <th>Permintaan</th>
                                                     <th>Persediaan</th>
-                                                    <th>Penjualan</th>
+                                                    <th>Produksi</th>
                                                     <th>Hasil Prediksi</th>
                                                     <th>Aksi</th>
                                                 </tr>
@@ -110,7 +110,7 @@ $sql = mysqli_query($conn, "SELECT * FROM tabel_hasil WHERE kode_produk = 'B02'"
                                                         <td><?php echo date('d F Y', strtotime($data['periode'])) . "<br>"; ?></td>
                                                         <td><?php echo $data['permintaan'] . "<br>"; ?></td>
                                                         <td><?php echo $data['persediaan'] . "<br>"; ?></td>
-                                                        <td><?php echo $data['penjualan'] . "<br>"; ?></td>
+                                                        <td><?php echo $data['produksi'] . "<br>"; ?></td>
                                                         <td><?php echo $data['hasil'] . "<br>"; ?></td>
                                                         <td>
                                                             <button type="button" class="btn btn-dark link-dark" data-bs-toggle="modal" data-bs-target="#exampleModaledit<?php echo $no ?>" style="background-color: #727c85;">
@@ -129,7 +129,7 @@ $sql = mysqli_query($conn, "SELECT * FROM tabel_hasil WHERE kode_produk = 'B02'"
                                                                             </h1>
                                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                         </div>
-                                                                        <form method="POST" action="proses/proses_edit_dataprediksibileh.php">
+                                                                        <form method="POST" action="proses/proses_edit_dataprediksi.php">
                                                                             <div class="modal-body">
                                                                                 <div class="row">
                                                                                     <input type="hidden" name="id_hasil" value="<?php echo $data['id_hasil'] ?>">
@@ -141,6 +141,7 @@ $sql = mysqli_query($conn, "SELECT * FROM tabel_hasil WHERE kode_produk = 'B02'"
                                                                                         <label for="recipient-name" class="form-label">Nama Produk</label>
                                                                                         <input type="text" name="nama_produk" class="input" value="<?php echo $data['nama_produk'] ?>">
                                                                                     </div>
+
                                                                                     <div class="div col-lg-4">
                                                                                         <label for="recipient-name" class="form-label">Periode</label><br>
                                                                                         <input type="date" class="input" name="periode" value="<?php echo $data['periode'] ?>">
@@ -156,13 +157,13 @@ $sql = mysqli_query($conn, "SELECT * FROM tabel_hasil WHERE kode_produk = 'B02'"
                                                                                         <input type="text" class="input" name="persediaan" value="<?php echo $data['persediaan'] ?>">
                                                                                     </div>
                                                                                     <div class="div col-lg-4">
-                                                                                        <label for="recipient-name" class="form-label">Penjualan</label>
-                                                                                        <input type="text" class="input" name="penjualan" value="<?php echo $data['penjualan'] ?>">
+                                                                                        <label for="recipient-name" class="form-label">Produksi</label>
+                                                                                        <input type="text" class="input" name="produksi" value="<?php echo $data['produksi'] ?>">
                                                                                     </div>
                                                                                 </div><br>
                                                                                 <div class="row">
                                                                                     <div class="div col-lg-4">
-                                                                                        <label for="recipient-name" class="form-label">Hasil Prediksi</label><br>
+                                                                                        <label for="recipient-name" class="form-label">Hasil</label><br>
                                                                                         <input type="text" class="input" name="hasil" value="<?php echo $data['hasil'] ?>">
                                                                                     </div>
                                                                                 </div><br>
@@ -190,7 +191,7 @@ $sql = mysqli_query($conn, "SELECT * FROM tabel_hasil WHERE kode_produk = 'B02'"
                                                                             <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus Data Prediksi</h1>
                                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                         </div>
-                                                                        <form method="POST" action="proses/proses_delete_datahasil_udang.php">
+                                                                        <form method="POST" action="proses/proses_delete_datahasil_bileh.php">
                                                                             <input type="hidden" name="id_hasil" value="<?php echo $data['id_hasil'] ?>">
                                                                             <div class="modal-body">
                                                                                 Yakin ingin menghapus data produk ini?

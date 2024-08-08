@@ -89,17 +89,6 @@ header{
 .content .contentBx{
     max-width: 500px;
 }
-.content .contentBx h1{
-    font-size: 4em;
-    color: #000000;
-    line-height: 1em;
-    margin: 10px;
-}
-.content .contentBx p{
-    font-size: 1em;
-    color: #000000;
-    margin: 30px 10px;
-}
 .content .contentBx .btn{
     background-color: #63a5e8;
     color: #000000;

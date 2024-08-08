@@ -72,7 +72,7 @@ require "proses/session.php";
             <main class="content px-3 py-4">
                 <div class="container-fluid">
                     <div class="mb-3">
-                        <h3 class="fw-bold fs-4 mb-3">Tambah Data Prediksi Bileh</h3>
+                        <h3 class="fw-bold fs-4 mb-3">Tambah Data Prediksi Bileh Crispy</h3>
                         <div class="col-12">
                             <div class="card border-0">
                                 <div class="card-body">
@@ -84,33 +84,33 @@ require "proses/session.php";
                                             </div>
                                             <div class="div col-lg-6">
                                                 <h5>Nama Produk</h5>
-                                                <input type="text" name="nama_produk" class="input" value="Bileh Crispy" readonly>
+                                                <input type="text" name="nama_produk" class="input" value="Udang Crispy" readonly>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="div col-lg-6">
                                                 <h5>Periode</h5>
-                                                <input type="date" name="periode" class="input" required="required">
+                                                <input type="date" name="periode" class="input">
                                             </div>
                                             <div class="div col-lg-6">
-                                                <h5>Permintaan</h5>
-                                                <input type="text" name="permintaan" class="input" required="required">
+                                                <h5>Jumlah Permintaan</h5>
+                                                <input type="text" name="permintaan" class="input" placeholder="contoh masukan: 200">
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="div col-lg-6">
-                                                <h5>Persediaan</h5>
-                                                <input type="text" class="input" name="persediaan" required="required">
+                                                <h5>Jumlah Persediaan</h5>
+                                                <input type="text" class="input" name="persediaan" placeholder="contoh masukan: 10">
                                             </div>
                                             <div class="div col-lg-6">
-                                                <h5>Produksi</h5>
-                                                <input type="text" class="input" name="produksi" required="required">
+                                                <h5>Jumlah Penjualan</h5>
+                                                <input type="text" class="input" name="penjualan" placeholder="contoh masukan: 10">
                                             </div>
                                         </div>
                                         <br>
                                         <div class="button">
                                             <button class="btn btn-info" type="submit">Hitung</button>
-                                            <a href="prediksi_bileh.php" class="btn btn-secondary">Batal</a>
+                                            <a href="prediksi_udang.php" class="btn btn-secondary">Batal</a>
                                         </div>
                                     </form>
                                 </div>

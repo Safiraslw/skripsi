@@ -8,6 +8,21 @@
     <title>Sistem Prediksi</title>
 </head>
 
+<style>
+    .content .contentBx h1 {
+        font-size: 3em;
+        color: #000000;
+        line-height: 1em;
+        margin: 10px;
+    }
+
+    .content .contentBx p {
+        font-size: 1.5em;
+        color: #000000;
+        margin: 30px 10px;
+    }
+</style>
+
 <body>
     <section>
         <div class="blur_clr"></div>
@@ -24,19 +39,15 @@
         </header>
         <div class="content">
             <div class="contentBx">
-                <h1>Sistem Prediksi Jumlah Produksi</h1>
+                <h1>Sistem Prediksi Jumlah Produksi Produk menggunakan Metode Fuzzy Mamdani</h1>
                 <p>Sistem prediksi jumlah produksi adalah alat atau metode
                     yang digunakan untuk memperkirakan jumlah produk yang
-                    akan diproduksi dalam periode waktu tertentu. Sistem ini
-                    dapat memanfaatkan berbagai teknik analisis data dan
-                    algoritma statistik atau pembelajaran mesin untuk membuat
-                    perkiraan yang akurat berdasarkan data historis dan
-                    faktor-faktor lain yang relevan.
+                    akan diproduksi dalam periode waktu tertentu.
                 </p>
                 <a href="login.php" class="btn">Coba Sekarang</a>
             </div>
             <div class="imgBx">
-                <img src="image/udang_remove.png" alt="">
+                <img src="image/udang_bileh.png" alt="">
             </div>
             <ul class="sci">
                 <li><a href="https://id-id.facebook.com/"><img src="image/facebook.png"></a></li>

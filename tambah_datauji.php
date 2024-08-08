@@ -80,31 +80,42 @@ require "proses/session.php";
                                         <div class="row">
                                             <div class="div col-lg-6">
                                                 <h5>Kode Produk</h5>
-                                                <input type="text" name="kode_produk" class="input" required="required">
+                                                <!-- <input type="text" name="kode_produk" class="input"> -->
+                                                <select name="kode_produk" class="input" onchange="showProductName()" id="produkSelect">
+                                                    <option value="0">Pilih</option>
+                                                    <option value="B01">B01</option>
+                                                    <option value="B02">B02</option>
+                                                </select>
                                             </div>
                                             <div class="div col-lg-6">
                                                 <h5>Nama Produk</h5>
-                                                <input type="text" name="nama_produk" class="input" required="required">
+                                                <input type="text" name="nama_produk" class="input" id="nama_produk" readonly>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="div col-lg-6">
                                                 <h5>Periode</h5>
-                                                <input type="date" name="periode" class="input" required="required">
+                                                <input type="date" name="periode" class="input">
                                             </div>
                                             <div class="div col-lg-6">
-                                                <h5>Permintaan</h5>
-                                                <input type="text" name="permintaan" class="input" required="required">
+                                                <h5>Jumlah Permintaan</h5>
+                                                <input type="text" name="permintaan" class="input" placeholder="contoh masukan: 200">
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="div col-lg-6">
-                                                <h5>Persediaan</h5>
-                                                <input type="text" class="input" name="persediaan" required="required">
+                                                <h5>Jumlah Persediaan</h5>
+                                                <input type="text" class="input" name="persediaan" placeholder="contoh masukan: 10">
                                             </div>
                                             <div class="div col-lg-6">
-                                                <h5>Produksi</h5>
-                                                <input type="text" class="input" name="produksi" required="required">
+                                                <h5>Jumlah Penjualan</h5>
+                                                <input type="text" class="input" name="penjualan" placeholder="contoh masukan: 190">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="div col-lg-6">
+                                                <h5>Jumlah Produksi</h5>
+                                                <input type="text" class="input" name="produksi" placeholder="contoh masukan: 190">
                                             </div>
                                         </div>
                                         <br>
@@ -121,6 +132,30 @@ require "proses/session.php";
             </main>
         </div>
     </div>
+
+    <script>
+        function showProductName() {
+            // Mendapatkan nilai yang dipilih dari dropdown
+            var selectedValue = document.getElementById("produkSelect").value;
+            var productName = "";
+
+            // Menentukan nama produk berdasarkan nilai yang dipilih
+            switch (selectedValue) {
+                case "B01":
+                    productName = "Udang Crispy";
+                    break;
+                case "B02":
+                    productName = "Bileh Crispy";
+                    break;
+                default:
+                    productName = "Pilih Produk";
+            }
+
+            // Menampilkan nama produk di kolom inputan lain
+            document.getElementById("nama_produk").value = productName;
+        }
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="js/script.js"></script>
 

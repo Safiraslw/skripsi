@@ -33,11 +33,9 @@
             <div class="card-body p-md-2">
               <div class="row justify-content-center">
                 <p class="text-center h1 fw-bold mb-4 mx-1 mx-md-3 mt-3">
-                  <img src="image/udang_remove.png" class="logo">
                   Login Sistem Prediksi
                 </p>
                 <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-                  <br>
                   <form action="proses/login.php" method="post">
                     <!-- Username input -->
                     <div class="form-outline mb-4">

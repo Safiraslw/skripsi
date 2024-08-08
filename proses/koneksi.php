@@ -1,4 +1,4 @@
 <?php
-    $conn = mysqli_connect("localhost", "root", "", "sistem_prediksi")
+    $conn = mysqli_connect("localhost", "root", "", "prediksi")
     or die("koneksi gagal");
 ?>

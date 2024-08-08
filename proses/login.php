@@ -1,6 +1,6 @@
 <?php
 session_start();
-include ('koneksi.php');
+include('koneksi.php');
 
 if (isset($_POST['login'])) {
 
@@ -10,34 +10,23 @@ if (isset($_POST['login'])) {
     $sql = "SELECT * FROM `tabel_akun` WHERE `username`='$username' AND `password`='$password'";
     $result = mysqli_query($conn, $sql);
 
-    if (empty($_POST['username']) && empty($_POST['password'])) {
-        echo "<script>alert('Please Fill Username and Password');</script>";
-        echo "<script> window.location='../login.php';</script>";
-    } elseif (empty($_POST['password'])) {
-        echo "<script>alert('Please Fill Password');</script>";
-        echo "<script> window.location='../login.php';</script>";
-    } elseif (empty($_POST['username'])) {
-        echo "<script>alert('Please Fill Username);</script>";
-        echo "<script> window.location='../login.php';</script>";
-    } else {
-        if (mysqli_num_rows($result) > 0) {
-            $row = mysqli_fetch_array($result);
-            $name = $row['name'];
-            $username = $row['username'];
-            $password = $row['password'];
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_array($result);
+        $name = $row['name'];
+        $username = $row['username'];
+        $password = $row['password'];
 
 
-            if ($username == $username && $password == $password) {
-                $_SESSION['name'] = $name;
-                $_SESSION['username'] = $username;
-                $_SESSION['password'] = $password;
-                header("Location: ../dashboard.php");
-            }
-        } else {
-            echo "<script>alert('Username atau Password Salah');</script>";
-            echo "<script> window.location='../login.php';</script>";
-            exit;
+        if ($username == $username && $password == $password) {
+            $_SESSION['name'] = $name;
+            $_SESSION['username'] = $username;
+            $_SESSION['password'] = $password;
+            header("Location: ../dashboard.php");
         }
+    } else {
+        echo "<script>alert('Username atau Password Salah');</script>";
+        echo "<script> window.location='../login.php';</script>";
+        exit;
     }
-
 }
+?>

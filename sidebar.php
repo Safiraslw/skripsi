@@ -6,7 +6,8 @@
         width: 70px;
         min-width: 70px;
         z-index: 1000;
-        transition: all .25s ease-in-out;
+        /* transition: all .25s ease-in-out; */
+        /* transition: width 0s; */
         background-color: #0e2238;
         display: flex;
         flex-direction: column;
@@ -15,6 +16,12 @@
     #sidebar.expand {
         width: 260px;
         min-width: 260px;
+    }
+
+    /* Keadaan saat sidebar dikurangi */
+    #sidebar.collapsed {
+        width: 0;
+        min-width: 0;
     }
 
     .toggle-btn {

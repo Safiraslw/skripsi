@@ -37,7 +37,7 @@ $sqli = $sql;
             padding: 10px;
             box-shadow: 1px 3px 5px #aaaa;
             border-radius: 5px;
-            font-size: small;
+            font-size: medium;
         }
 
         .modal-body {
@@ -103,7 +103,8 @@ $sqli = $sql;
                                                     <th>Periode</th>
                                                     <th>Permintaan</th>
                                                     <th>Persediaan</th>
-                                                    <th>Prediksi</th>
+                                                    <th>Penjualan</th>
+                                                    <th>Produksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -119,6 +120,7 @@ $sqli = $sql;
                                                         <td><?php echo date('d F Y', strtotime($data['periode'])) . "<br>"; ?></td>
                                                         <td><?php echo $data['permintaan'] . "<br>"; ?></td>
                                                         <td><?php echo $data['persediaan'] . "<br>"; ?></td>
+                                                        <td><?php echo $data['penjualan'] . "<br>"; ?></td>
                                                         <td><?php echo $data['produksi'] . "<br>"; ?></td>
                                                     </tr>
                                                 <?php } ?>

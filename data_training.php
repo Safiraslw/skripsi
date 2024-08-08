@@ -26,7 +26,7 @@ $sql = mysqli_query($conn, "SELECT * FROM data_training");
             padding: 10px;
             box-shadow: 1px 3px 5px #aaaa;
             border-radius: 5px;
-            font-size: small;
+            font-size: medium;
         }
 
         .modal-body {
@@ -92,6 +92,7 @@ $sql = mysqli_query($conn, "SELECT * FROM data_training");
                                                     <th>Permintaan</th>
                                                     <th>Persediaan</th>
                                                     <th>Produksi</th>
+                                                    <th>Penjualan</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
@@ -108,6 +109,7 @@ $sql = mysqli_query($conn, "SELECT * FROM data_training");
                                                         <td><?php echo date('d F Y', strtotime($data['periode'])) . "<br>"; ?></td>
                                                         <td><?php echo $data['permintaan'] . "<br>"; ?></td>
                                                         <td><?php echo $data['persediaan'] . "<br>"; ?></td>
+                                                        <td><?php echo $data['penjualan'] . "<br>"; ?></td>
                                                         <td><?php echo $data['produksi'] . "<br>"; ?></td>
                                                         <td>
                                                             <button type="button" class="btn btn-dark link-dark" data-bs-toggle="modal" data-bs-target="#exampleModaledit<?php echo $no ?>" style="background-color: #727c85;">
@@ -158,6 +160,12 @@ $sql = mysqli_query($conn, "SELECT * FROM data_training");
                                                                                         <input type="text" class="input" name="produksi" value="<?php echo $data['produksi'] ?>">
                                                                                     </div>
                                                                                 </div><br>
+                                                                                <div class="row">
+                                                                                    <div class="div col-lg-4">
+                                                                                        <label for="recipient-name" class="form-label">Penjualan</label><br>
+                                                                                        <input type="text" class="input" name="penjualan" value="<?php echo $data['penjualan'] ?>">
+                                                                                    </div>
+                                                                                </div><br>
                                                                             </div>
                                                                             <div class="modal-footer">
                                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -185,7 +193,7 @@ $sql = mysqli_query($conn, "SELECT * FROM data_training");
                                                                         <form method="POST" action="proses/proses_delete_datatraining.php">
                                                                             <input type="hidden" name="id_dtraining" value="<?php echo $data['id_dtraining'] ?>">
                                                                             <div class="modal-body">
-                                                                                Yakin ingin menghapus produk data ini?
+                                                                                Yakin ingin menghapus data produk ini?
                                                                             </div>
                                                                             <div class="modal-footer">
                                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
