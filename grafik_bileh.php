@@ -151,7 +151,7 @@ if ($query->num_rows > 0) {
                             fill: false
                         },
                         {
-                            label: 'Hasil Prediksi',
+                            label: 'Produksi',
                             data: data.hasil,
                             backgroundColor: 'rgba(0, 255, 0, 0.2)',
                             borderColor: 'rgba(0, 255, 0, 1)',
